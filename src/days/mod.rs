@@ -29,6 +29,7 @@ use anyhow::Result;
 
 type Challenge = Box<dyn challenge::Challenge>;
 
+/// Run the challenge for the given day.
 pub fn run(day: u32) -> Result<()> {
     let challenge = find_challenge(day)?;
     let example_path = format!("input/day{:02}_example.txt", day);
@@ -73,6 +74,7 @@ pub fn run(day: u32) -> Result<()> {
     }
 }
 
+/// Creates an Instance of the challenge for the given day.
 fn find_challenge(day: u32) -> Result<Challenge> {
     match day {
         1 => Ok(Box::new(day01::Day01::new())),
@@ -99,7 +101,7 @@ fn find_challenge(day: u32) -> Result<Challenge> {
         22 => Ok(Box::new(day22::Day22::new())),
         23 => Ok(Box::new(day23::Day23::new())),
         24 => Ok(Box::new(day24::Day24::new())),
-        25 => Ok(Box::new(day25::Day25::new()),
+        25 => Ok(Box::new(day25::Day25::new())),
         _ => Err(anyhow::anyhow!("Day {} is not in Advent of Code", day)),
     }
 }
