@@ -50,6 +50,23 @@ pub fn run(day: u32) -> Result<()> {
         println!("Part 2: {}", part2);
 
         std::thread::sleep(std::time::Duration::from_secs(2));
+    } else {
+        let example1_path = format!("input/day{:02}_example1.txt", day);
+        let example2_path = format!("input/day{:02}_example2.txt", day);
+
+        if std::fs::exists(&example1_path)? && std::fs::exists(&example2_path)? {
+            let input1 = std::fs::read_to_string(example1_path)?;
+            println!("Example input 1:");
+            let part1 = challenge.part1(&input1)?;
+            println!("Part 1: {}", part1);
+
+            let input2 = std::fs::read_to_string(example2_path)?;
+            println!("Example input 2:");
+            let part2 = challenge.part2(&input2)?;
+            println!("Part 2: {}", part2);
+
+            std::thread::sleep(std::time::Duration::from_secs(2));
+        }
     }
 
     if std::fs::exists(&default_path)? {
